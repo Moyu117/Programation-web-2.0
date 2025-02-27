@@ -4,7 +4,7 @@ require_once 'header.php';
 
 $link = db_connect($db_host, $db_user, $db_pass, $db_name);
 
-$action = $_GET['action'] ?? 'all';
+$action = isset($_GET['action']) ? $_GET['action'] : 'all';
 
 // 1. Voir toutes les recettes
 if ($action === 'all') {

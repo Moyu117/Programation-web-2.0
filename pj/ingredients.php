@@ -27,10 +27,11 @@ while ($row = mysqli_fetch_assoc($res)) {
         'cnt' => $row['cnt']
     ];
 }
-
+// défaut:par nom d'ingrédient
 // tir
-$orderField = $_GET['orderField'] ?? 'nom'; // défaut:par nom d'ingrédient
-$orderDir = $_GET['orderDir'] ?? 'ASC';
+$orderField = isset($_GET['orderField']) ? $_GET['orderField'] : 'nom';
+$orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
+
 
 // validee
 $validFields = ['nom','cnt'];
@@ -46,19 +47,33 @@ usort($ingredients, function($a, $b) use ($orderField, $orderDir) {  //fonction 
     if ($a[$orderField] == $b[$orderField]) return 0;
 
     if ($orderDir === 'ASC') {
-        // ordre de nb ou abcde...
-        if ($orderField === 'cnt') {
-            return $a['cnt'] <=> $b['cnt'];
+    // 按数量排序（升序）或按字母排序（升序）
+    if ($orderField === 'cnt') {
+        if ($a['cnt'] < $b['cnt']) {
+            return -1;
+        } elseif ($a['cnt'] > $b['cnt']) {
+            return 1;
         } else {
-            return strcmp($a['nom'], $b['nom']);
+            return 0;
         }
     } else {
-        if ($orderField === 'cnt') {
-            return $b['cnt'] <=> $a['cnt'];
-        } else {
-            return strcmp($b['nom'], $a['nom']);
-        }
+        return strcmp($a['nom'], $b['nom']); // 字母顺序
     }
+} else {
+    // 按数量排序（降序）或按字母排序（降序）
+    if ($orderField === 'cnt') {
+        if ($b['cnt'] < $a['cnt']) {
+            return -1;
+        } elseif ($b['cnt'] > $a['cnt']) {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return strcmp($b['nom'], $a['nom']); // 逆字母顺序
+    }
+}
+
 });
 
 //nextDir = (ASC->DESC / DESC->ASC)，sinon defaut

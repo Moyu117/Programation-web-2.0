@@ -6,12 +6,13 @@ require_once 'fonction.inc.php';
 // connecter a DB
 $link = db_connect($db_host, $db_user, $db_pass, $db_name);
 
-$action = $_REQUEST['action'] ?? '';
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 //connecter
 if ($action === 'login') {
-    $login = $_POST['login'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $login = isset($_POST['login']) ? $_POST['login'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+
 
     $loginEsc = mysqli_real_escape_string($link, $login);
     $passwordEsc = mysqli_real_escape_string($link, $password);
@@ -57,10 +58,10 @@ if ($action === 'registerForm') {
 
 // Inscrire
 if ($action === 'register') {
-    $login = $_POST['login'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $prenom = $_POST['prenom'] ?? '';
-    $age = $_POST['age'] ?? '';
+    $login = isset($_POST['login']) ? $_POST['login'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
+    $age = isset($_POST['age']) ? $_POST['age'] : '';
 
     // verifer
     if (!preg_match('/^[A-Za-z0-9]+$/', $login)) {
@@ -100,9 +101,10 @@ if ($action === 'edit') {
 
     // post
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $newPassword = $_POST['password'] ?? '';
-        $newPrenom   = $_POST['prenom'] ?? '';
-        $newAge      = $_POST['age'] ?? '';
+        $newPassword = isset($_POST['password']) ? $_POST['password'] : '';
+        $newPrenom   = isset($_POST['prenom']) ? $_POST['prenom'] : '';
+        $newAge      = isset($_POST['age']) ? $_POST['age'] : '';
+
 
         list($newPasswordEsc, $newPrenomEsc, $newAgeEsc) = array_escape($link, [$newPassword, $newPrenom, $newAge]);
 

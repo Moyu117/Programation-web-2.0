@@ -9,11 +9,11 @@ if (!isset($_SESSION['user'])) {
 
 $link = db_connect($db_host, $db_user, $db_pass, $db_name);
 
-$action = $_GET['action'] ?? 'myFav';
+$action = isset($_GET['action']) ? $_GET['action'] : 'myFav';
 
 // changer etat
 if ($action === 'toggle') {
-    $rid = (int)($_GET['rid'] ?? 0);
+    $rid = isset($_GET['rid']) ? (int) $_GET['rid'] : 0;
     $userLogin = $_SESSION['user']['login'];
 
     $userLoginEsc = mysqli_real_escape_string($link, $userLogin);

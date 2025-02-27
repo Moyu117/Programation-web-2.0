@@ -9,7 +9,7 @@ if (!check_db_installed($db_host, $db_user, $db_pass, $db_name)) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <title>Page d'accueil des recettes de cocktails</title>
