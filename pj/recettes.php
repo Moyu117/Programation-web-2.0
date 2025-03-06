@@ -65,7 +65,7 @@ if ($action === 'detail' && isset($_GET['id'])) {
     $resR = query($link, $sqlR);
     $recettes = mysqli_fetch_assoc($resR);
     if (!$recettes) {
-        echo "<p>Cette recette n'a pas été trouvée</p></body></html>";
+        echo "<p>Cette recette n'a pas ete trouvee</p></body></html>";
         exit;
     }
 
@@ -92,7 +92,7 @@ if ($action === 'detail' && isset($_GET['id'])) {
         WHERE ri.recettes_id=$id
     ";
     $resIng = query($link, $sqlIng);
-    echo "<h3>Ingrédients:</h3><ul>";
+    echo "<h3>Ingredients:</h3><ul>";
     while ($rowI = mysqli_fetch_assoc($resIng)) {
         $ingName = htmlspecialchars($rowI['nom']);
         $ingNameUrl = urlencode($rowI['nom']);
@@ -117,12 +117,12 @@ if ($action === 'byIngredient' && isset($_GET['name'])) {
     $resFind = query($link, $sqlFind);
     $ingRow = mysqli_fetch_assoc($resFind);
     if (!$ingRow) {
-        echo "<p>L'ingrédient n'a pas été trouvé ou il n'existe pas de recette correspondante</p></body></html>";
+        echo "<p>L'ingredient n'a pas ete trouve ou il n'existe pas de recette correspondante</p></body></html>";
         exit;
     }
     $ingId = (int)$ingRow['id'];
 
-    // Trouver recette contenant cet ingrédient
+    // Trouver recette contenant cet ingredient
     $sqlRec = "
         SELECT r.id, r.titre
         FROM recettes_ingredients re
@@ -132,7 +132,7 @@ if ($action === 'byIngredient' && isset($_GET['name'])) {
     ";
     $resRec = query($link, $sqlRec);
 
-    echo "<h2>Contient des ingrédients：".htmlspecialchars($ingName)." recettes</h2>";
+    echo "<h2>Contient des ingredients：".htmlspecialchars($ingName)." recettes</h2>";
     while ($r = mysqli_fetch_assoc($resRec)) {
         $rid = $r['id'];
         $titre = htmlspecialchars($r['titre']);
