@@ -58,11 +58,11 @@ if (!check_db_installed($db_host, $db_user, $db_pass, $db_name)) {
 <ul>
    
     <li><a href="recettes.php?action=all">Voir toutes les recettes</a></li>
-	<li><a href="admin.php">accès aux recettes préférées de tous les utilisateurs</a></li>
+	<li><a href="admin.php">acces aux recettes preferees de tous les utilisateurs</a></li>
 	<li><a href="install.php">installation</a></li>
     <?php if (isset($_SESSION['user'])): ?>
-        <li><a href="ingredients.php">Afficher par ingrédient (disponible uniquement si vous êtes connecté)</a></li>
-        <li><a href="favorites.php?action=myFav">mes recettes préférées</a></li>
+        <li><a href="ingredients.php">Afficher par ingredient (disponible uniquement si vous etes connecte)</a></li>
+        <li><a href="favorites.php?action=myFav">mes recettes preferees</a></li>
     <?php endif; ?>
 	
 </ul>
