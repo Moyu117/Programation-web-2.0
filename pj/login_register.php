@@ -27,8 +27,8 @@ if ($action === 'login') {
         header("Location: index.php");
         exit;
     } else {
-        echo "Échec de la connexion : nom d'utilisateur ou mot de passe incorrect<br>";
-        echo "<a href='index.php'>Retour à la page d'accueil</a>";
+        echo "Echec de la connexion : nom d'utilisateur ou mot de passe incorrect<br>";
+        echo "<a href='index.php'>Retour a la page d'accueil</a>";
         exit;
     }
 }
@@ -68,17 +68,17 @@ if ($action === 'register') {
         die("Le login ne peut contenir que des lettres ou des chiffres");
     }
     if (!is_numeric($age)) {
-        die("L'âge doit être un nombre entier");
+        die("L'age doit être un nombre entier");
     }
 
     //transfére
     list($loginEsc, $passwordEsc, $prenomEsc, $ageEsc) = array_escape($link, [$login, $password, $prenom, $age]);
 
-    // Vérifier si le nom de utilisateur existe déjà
+    // Verifier si le nom de utilisateur existe deja
     $sqlCheck = "SELECT login FROM users WHERE login='$loginEsc'";
     $resCheck = query($link, $sqlCheck);
     if (mysqli_fetch_assoc($resCheck)) {
-        die("Ce nom de utilisateur a été enregistré");
+        die("Ce nom de utilisateur a ete enregistre");
     }
 
     // Insertion dans la base de données
@@ -88,8 +88,8 @@ if ($action === 'register') {
     ";
     query($link, $sqlInsert);
 
-    echo "Inscription réussie！<br>";
-    echo "<a href='index.php'>Retour à la page d'accueil</a>";
+    echo "Inscription reussie！<br>";
+    echo "<a href='index.php'>Retour a la page d'accueil</a>";
     exit;
 }
 
@@ -123,8 +123,8 @@ if ($action === 'edit') {
         $_SESSION['user']['prenom']   = $newPrenom;
         $_SESSION['user']['age']      = $newAge;
 
-        echo "L'information a été mise à jour avec succès！<br>";
-        echo "<a href='index.php'>Retour à la page d'accueil</a>";
+        echo "L'information a ete mise a jour avec succes！<br>";
+        echo "<a href='index.php'>Retour a la page d'accueil</a>";
         exit;
     } else {
         // Afficher le formulaire de modification
