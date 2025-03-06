@@ -92,7 +92,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'create') {
         $ing_brut     = mysqli_real_escape_string($link, $r['ingredients']);
         $preparation  = mysqli_real_escape_string($link, $r['preparation']);
 
-        // dans recettes
+        // dans recette
         $sqlinsertrecettes = "
             INSERT INTO recettes (titre, ingredients_brut, preparation, photo)
             VALUES ('$titre', '$ing_brut', '$preparation', NULL)
@@ -100,7 +100,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'create') {
         query($link, $sqlinsertrecettes);
         $newrecettesId = mysqli_insert_id($link);
 
-        // ingrédients
+        // ingrédient
         if (!empty($r['index'])) {
             foreach ($r['index'] as $ingname) {
                 $ingname = trim($ingname);
@@ -108,7 +108,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'create') {
 
                 $ingnameexi = mysqli_real_escape_string($link, $ingname);
 
-                // tester si ingredients exist
+                // tester si ingredient exist
                 $sqlCheck = "SELECT id FROM ingredients WHERE nom='$ingnameexi' LIMIT 1";
                 $resCheck = query($link, $sqlCheck);
                 if ($row = mysqli_fetch_assoc($resCheck)) {

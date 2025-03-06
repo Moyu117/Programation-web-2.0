@@ -2,14 +2,13 @@
 // admin.php
 require_once 'config.php';
 require_once 'fonction.inc.php';
+require_once 'header.php'; 
 
-if (!isset($_SESSION['user'])) {
-    die("connecter SVP");
-}
+//if (!isset($_SESSION['user'])) {
+//    die("connecter SVP");
+//}
 
-// if ($_SESSION['user']['login'] !== 'admin') {
-//     die("non droit");
-// }
+
 
 $link = db_connect($db_host, $db_user, $db_pass, $db_name);
 
@@ -24,7 +23,7 @@ while ($u = mysqli_fetch_assoc($resUsers)) {
     echo "<h3>utilisateur：" . htmlspecialchars($login) . "</h3>";
 
     $loginEsc = mysqli_real_escape_string($link, $login);
-    // Vérifiez les recettes préférées de cet utilisateur
+    // Vérifiez les recettes preferees de cet utilisateur
     $sqlFav = "
         SELECT r.titre
         FROM favorites f
