@@ -27,8 +27,8 @@ if ($action === 'login') {
         header("Location: index.php");
         exit;
     } else {
-        echo "Échec de la connexion : nom d'utilisateur ou mot de passe incorrect<br>";
-        echo "<a href='index.php'>Retour à la page d'accueil</a>";
+        echo "Echec de la connexion : nom d'utilisateur ou mot de passe incorrect<br>";
+        echo "<a href='index.php'>Retour a la page d'accueil</a>";
         exit;
     }
 }
@@ -66,7 +66,7 @@ if ($action === 'inscrire') {
     // verifer
 	// Vérifier que le prénom ne contient que des lettres
     if (!preg_match('/^[\p{L} -]+$/u', $prenom)) {
-    die("prénom est composés de lettres minuscules et/ou de lettres MAJUSCULES, ainsi que les caractères « - », «
+    die("prenom est composes de lettres minuscules et/ou de lettres MAJUSCULES, ainsi que les caracteres « - », «
 » (espace)");
     }
 
@@ -74,7 +74,7 @@ if ($action === 'inscrire') {
         die("Le login ne peut contenir que des lettres ou des chiffres");
     }
     if (!is_numeric($age)||intval($age)<18) {
-        die("L'âge doit être un nombre entier et age >=18");
+        die("L'age doit etre un nombre entier et age >=18");
     }
 
     //transfére
@@ -84,7 +84,7 @@ if ($action === 'inscrire') {
     $sqlCheck = "SELECT login FROM users WHERE login='$loginEsc'";
     $resCheck = query($link, $sqlCheck);
     if (mysqli_fetch_assoc($resCheck)) {
-        die("Ce nom de utilisateur a été enregistré");
+        die("Ce nom de utilisateur a ete enregistre");
     }
 
     // Insertion dans la base de données
@@ -94,8 +94,8 @@ if ($action === 'inscrire') {
     ";
     query($link, $sqlInsert);
 
-    echo "Inscription réussie！<br>";
-    echo "<a href='index.php'>Retour à la page d'accueil</a>";
+    echo "Inscription reussie！<br>";
+    echo "<a href='index.php'>Retour a la page d'accueil</a>";
     exit;
 }
 
@@ -114,10 +114,10 @@ if ($action === 'edit') {
 		// verifer
     
     if (!is_numeric($newAge)||intval($newAge)<18) {
-        die("L'âge doit être un nombre entier et age >=18");
+        die("L'age doit etre un nombre entier et age >=18");
     }
 	if (!preg_match('/^[\p{L} -]+$/u', $newPrenom)) {
-    die("prénom est composés de lettres minuscules et/ou de lettres MAJUSCULES, ainsi que les caractères « - », «
+    die("prenom est composes de lettres minuscules et/ou de lettres MAJUSCULES, ainsi que les caracteres « - », «
 » (espace)");
     }
 
@@ -140,8 +140,8 @@ if ($action === 'edit') {
         $_SESSION['user']['prenom']   = $newPrenom;
         $_SESSION['user']['age']      = $newAge;
 
-        echo "L'information a été mise à jour avec succès！<br>";
-        echo "<a href='index.php'>Retour à la page d'accueil</a>";
+        echo "L'information a ete mise a jour avec succes！<br>";
+        echo "<a href='index.php'>Retour a la page d'accueil</a>";
         exit;
     } else {
         // Afficher le formulaire de modification
